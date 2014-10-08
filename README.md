@@ -21,22 +21,25 @@ Install
 =======
 
 Install the client package:
-
+```
 > $ go get github.com/mikespook/gearman-go/client
-	
-Install the worker package:
+```
 
+Install the worker package:
+```
 > $ go get github.com/mikespook/gearman-go/worker
+```
 
 Both of them:
-
+```shell
 > $ go get github.com/mikespook/gearman-go
+```
 
 Usage
 =====
 
 ## Worker
-
+```cpp
 	// Limit number of concurrent jobs execution. Use worker.Unlimited (0) if you want no limitation.
     w := worker.New(worker.OneByOne)
     w.ErrHandler = func(e error) {
@@ -52,10 +55,10 @@ Usage
 		return
 	}
 	go w.Work()
-	
+```	
 
 ## Client
-
+```cpp
 	// ...
 	c, err := client.New("tcp4", "127.0.0.1:4730")
     // ... error handling
@@ -72,6 +75,7 @@ Usage
     }
     handle, err := c.Do("ToUpper", echo, client.JOB_NORMAL, jobHandler)
 	// ...	
+```
 
 Branches
 ========
