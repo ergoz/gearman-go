@@ -22,30 +22,30 @@ Install
 
 Install the client package:
 ```
-> $ go get github.com/mikespook/gearman-go/client
+go get github.com/mikespook/gearman-go/client
 ```
 
 Install the worker package:
 ```
-> $ go get github.com/mikespook/gearman-go/worker
+go get github.com/mikespook/gearman-go/worker
 ```
 
 Both of them:
-```shell
-> $ go get github.com/mikespook/gearman-go
+```
+go get github.com/mikespook/gearman-go
 ```
 
 Usage
 =====
 
 ## Worker
-```cpp
+```go
 	// Limit number of concurrent jobs execution. Use worker.Unlimited (0) if you want no limitation.
     w := worker.New(worker.OneByOne)
     w.ErrHandler = func(e error) {
         log.Println(e)
     }
-    w.AddServer("127.0.0.1:4730")
+    w.AddServer("tcp4", "127.0.0.1:4730")
     // Use worker.Unlimited (0) if you want no timeout
     w.AddFunc("ToUpper", ToUpper, worker.Unlimited)
 	// This will give a timeout of 5 seconds
@@ -58,7 +58,7 @@ Usage
 ```	
 
 ## Client
-```cpp
+```go
 	// ...
 	c, err := client.New("tcp4", "127.0.0.1:4730")
     // ... error handling
